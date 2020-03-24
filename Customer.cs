@@ -9,11 +9,12 @@ namespace LemonadeStand_3DayStarter
     class Customer
     {
         public String Name;
-        public int WillingToPay;
-        public Customer(string name)
+        public int PriceWillingToPay;
+        public bool WillingToPay;
+        public Customer(string name, Weather weather, Recipe recipe)
         {
             Name = name;
-            SetWillingToPay();
+            SetCustomerPref(weather, recipe);
         }
        
        // Sets willing to pay
@@ -22,11 +23,49 @@ namespace LemonadeStand_3DayStarter
         private void SetWillingToPay()
         {
             Random rand = new Random();
-            WillingToPay = rand.Next(1, 5);
+            PriceWillingToPay = rand.Next(1, 5);
         }
-        public void SetWeatherPrefernces()
+        
+        // Can either be "Cloudy", "Clear", "Rainy"
+            
+        public void SetCustomerPref(Weather weather, Recipe recipe)
         {
-         if 
+            SetWillingToPay();
+            switch (weather.currentWeather)
+            {
+                case "Cloudy":
+                    {
+                        if (weather.temp >= 50 && PriceWillingToPay > recipe.PricePerCup)
+                        {
+                            WillingToPay = true;
+                        }
+                        else
+                            WillingToPay = false;
+                        break;
+                    }
+                case "Rainy":
+                    {
+                        if (weather.temp >= 80)
+                        {
+                            WillingToPay = true;
+                        }
+                        else
+                            WillingToPay = false;
+
+                        break;
+                    }
+                case "Clear":
+                    {
+                        WillingToPay = true;
+
+                        break;
+                    }
+
+                default:
+                    {
+                        break;
+                    }
+            }
         }
     }
 }

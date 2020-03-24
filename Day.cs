@@ -10,12 +10,18 @@ namespace LemonadeStand_3DayStarter
     {
         List<Customer> customers = new List<Customer>();
         string [] Names = new string[] { "Steve", "Thomas", "Becky", "Jenny", "Jamal" };
+        Weather currentWeather;
 
-        public Day()
+        public Day(Weather todaysWeather)
         {
+            currentWeather = todaysWeather;
             AddCustomers();
-            
+            SetCustomersWeather();
         }
+        //Generating all the customers
+        //Go to Store
+        //Setting the recipe
+        //(Last) BuyLogic.  Looping over all of our customers and determining whether they buy or not.
 
         private void AddCustomers()
         {
@@ -23,6 +29,13 @@ namespace LemonadeStand_3DayStarter
             {
                 Customer customer = new Customer(name);
                 customers.Add(customer);
+            }
+        }
+        private void SetCustomersWeather()
+        {
+            foreach(Customer C in customers)
+            {
+                C.SetWeatherPrefernces(currentWeather);
             }
         }
     }

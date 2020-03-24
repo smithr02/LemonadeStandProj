@@ -13,6 +13,7 @@ namespace LemonadeStand_3DayStarter
         public int numberOfIceCubes;
         public int maxCupsPerPitcher;
         public int CupsRemaining;
+        public int PricePerCup;
 
         public Recipe()
         {
@@ -40,7 +41,7 @@ namespace LemonadeStand_3DayStarter
             }
             else
             {
-                Console.Write("Not enough stuuuuuuuuf");
+                Console.Write("Not enough inventory");
             }
             
            
@@ -58,6 +59,9 @@ namespace LemonadeStand_3DayStarter
 
             Console.WriteLine("How many ice cubes do you want?");
             numberOfIceCubes = int.Parse(Console.ReadLine());
+
+            Console.WriteLine("What do you want the price per cup to be?");
+            PricePerCup = int.Parse(Console.ReadLine());
 
         }
 
