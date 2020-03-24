@@ -24,5 +24,9 @@ namespace LemonadeStand_3DayStarter
             Random rand = new Random();
             WillingToPay = rand.Next(1, 5);
         }
+        public void SetWeatherPrefernces()
+        {
+         if 
+        }
     }
 }
