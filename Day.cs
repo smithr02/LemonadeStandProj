@@ -10,15 +10,16 @@ namespace LemonadeStand_3DayStarter
     {
         List<Customer> customers = new List<Customer>();
         string [] Names = new string[] { "Steve", "Thomas", "Becky", "Jenny", "Jamal" };
-        Weather currentWeather;
-        Recipe currentRecipe; 
+        public Weather weather;
+        public Recipe recipe; 
            
 
-        public Day(Recipe todaysRecipe)
+        public Day()
         {
-            currentWeather = new Weather();
-            currentRecipe = todaysRecipe;
-            AddCustomers();
+            weather = new Weather();
+            weather.setWeather();
+                     
+            
             //GoToTheStore();
             //SetRecipe();
             //WillCustomerBuy();
@@ -27,23 +28,41 @@ namespace LemonadeStand_3DayStarter
 
             
         }
-        public void RunDay(Store store)
+        public void RunDay(Store store, Player player)
         {
             //Go to Store
-            GoToStore(store);
+            GoToStore(store, player);
+            
             //Setting the recipe
             //(Last) BuyLogic.  Looping over all of our customers and determining whether they buy or not.
         }
-        public void GoToStore(Store store)
+        public void GoToStore(Store store, Player player)
         {
+            store.SellCups(player);
+            store.SellIceCubes(player);
+            store.SellLemons(player);
+            store.SellSugarCubes(player);
             //Call all of the store buy methods to get the ingerdiants.
         }
-        public void SetRecipe()
+        public void SetRecipe(Player player)
         {
             //Call the player object's 'recipe' to make the recipe.
+           recipe = player.SetRecipe();
+           AddCustomers();
+            
         }
         public void SellLemonade()
         {
+            int count = 0;
+            foreach (Customer customer in customers)
+            {
+                if(customer.WillingToPay)
+                {
+                    count++;
+                }
+                
+            }
+            Console.WriteLine("You sold " + count + " number of cups");
             //Loop over customers ands sell lemonade to them based of the true or false they return.
         }
 
@@ -51,7 +70,7 @@ namespace LemonadeStand_3DayStarter
 
         private void AddCustomers()
         {
-            switch (currentWeather.currentWeather)
+            switch (weather.currentWeather)
             {
                 case "Sunny":
                     CreateCustomers(50);
@@ -71,7 +90,7 @@ namespace LemonadeStand_3DayStarter
             Random rng = new Random();
             for(int i = 0; i < numberOfCustomers; i++)
             {
-                customers.Add(new Customer(Names[rng.Next(5)], currentWeather, currentRecipe));
+                customers.Add(new Customer(Names[rng.Next(5)], weather, recipe));
             }
         }
         

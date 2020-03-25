@@ -55,8 +55,9 @@ namespace LemonadeStand_3DayStarter
 
         public void SetRecipe()
         {
-            Console.WriteLine("How many lemons do you want?");
+            Console.WriteLine("How many lemons do you want?");            
             numberOfLemons = int.Parse(Console.ReadLine());
+            
 
             Console.WriteLine("How many sugar cubes do you want?");
             numberOfSugarCubes = int.Parse(Console.ReadLine());

@@ -11,14 +11,21 @@ namespace LemonadeStand_3DayStarter
         // member variables (HAS A)
         public Inventory inventory;
         public Wallet wallet;
+        public Recipe recipe;
 
         // constructor (SPAWNER)
         public Player()
         {
             inventory = new Inventory();
             wallet = new Wallet();
+            recipe = new Recipe();
         }
 
-        // member methods (CAN DO)
+       public Recipe SetRecipe()
+        {
+            recipe.SetRecipe();
+            recipe.CreatePitcher(inventory);
+            return recipe;
+        }
     }
 }
