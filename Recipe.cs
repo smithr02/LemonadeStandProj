@@ -11,19 +11,18 @@ namespace LemonadeStand_3DayStarter
         public int numberOfLemons;
         public int numberOfSugarCubes;
         public int numberOfIceCubes;
-        public int maxCupsPerPitcher;
-        public int CupsRemaining;
+        public Pitcher pitcher;
         public int PricePerCup;
 
         public Recipe()
         {
-            maxCupsPerPitcher = 10;
         }
 
         public void CreatePitcher(Inventory ourInventory) //keeping track of our inventory
         {
             if (CanCreatePitcher(ourInventory))
             {
+                pitcher = new Pitcher();
                 for (int i = 0; i < numberOfLemons; i++)
                 {
                     ourInventory.lemons.RemoveAt(0);
@@ -38,6 +37,11 @@ namespace LemonadeStand_3DayStarter
                 {
                     ourInventory.sugarCubes.RemoveAt(0);
                 }
+                for(int i = 0; i< pitcher.CupsPerPitcher; i++)
+                {
+                    ourInventory.cups.RemoveAt(0);
+                }
+                
             }
             else
             {
@@ -67,7 +71,7 @@ namespace LemonadeStand_3DayStarter
 
         public bool CanCreatePitcher(Inventory EnoughSupplies)
         {
-            if (numberOfLemons > EnoughSupplies.lemons.Count && numberOfSugarCubes > EnoughSupplies.sugarCubes.Count && numberOfIceCubes > EnoughSupplies.iceCubes.Count)
+            if (numberOfLemons < EnoughSupplies.lemons.Count && numberOfSugarCubes < EnoughSupplies.sugarCubes.Count && numberOfIceCubes < EnoughSupplies.iceCubes.Count && pitcher.CupsPerPitcher < EnoughSupplies.cups.Count)
             {
                 return true;
             }
