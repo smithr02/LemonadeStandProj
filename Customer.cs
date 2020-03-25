@@ -41,11 +41,12 @@ namespace LemonadeStand_3DayStarter
                         }
                         else
                             WillingToPay = false;
+
                         break;
                     }
                 case "Rainy":
                     {
-                        if (weather.temp >= 80)
+                        if (weather.temp >= 70 && PriceWillingToPay > recipe.PricePerCup)
                         {
                             WillingToPay = true;
                         }
@@ -56,8 +57,13 @@ namespace LemonadeStand_3DayStarter
                     }
                 case "Clear":
                     {
-                        WillingToPay = true;
-
+                        if (weather.temp >= 40 && PriceWillingToPay > recipe.PricePerCup)
+                        {
+                            WillingToPay = true;
+                        }
+                        else
+                            WillingToPay = false;
+                        
                         break;
                     }
 
