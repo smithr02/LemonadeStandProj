@@ -16,10 +16,12 @@ namespace LemonadeStand_3DayStarter
 
         public Recipe()
         {
+              
         }
 
         public void CreatePitcher(Inventory ourInventory) //keeping track of our inventory
         {
+           
             if (CanCreatePitcher(ourInventory))
             {
                 pitcher = new Pitcher();
@@ -37,7 +39,7 @@ namespace LemonadeStand_3DayStarter
                 {
                     ourInventory.sugarCubes.RemoveAt(0);
                 }
-                for(int i = 0; i< pitcher.CupsPerPitcher; i++)
+                for(int i = 0; i< ourInventory.cups.Count; i++)
                 {
                     ourInventory.cups.RemoveAt(0);
                 }
@@ -45,7 +47,7 @@ namespace LemonadeStand_3DayStarter
             }
             else
             {
-                Console.Write("Not enough inventory");
+                Console.WriteLine("Not enough inventory");
             }
             
            
@@ -55,14 +57,14 @@ namespace LemonadeStand_3DayStarter
 
         public void SetRecipe()
         {
-            Console.WriteLine("How many lemons do you want?");            
+            Console.WriteLine("How many lemons do you want use?");            
             numberOfLemons = int.Parse(Console.ReadLine());
             
 
-            Console.WriteLine("How many sugar cubes do you want?");
+            Console.WriteLine("How many sugar cubes do you want use?");
             numberOfSugarCubes = int.Parse(Console.ReadLine());
 
-            Console.WriteLine("How many ice cubes do you want?");
+            Console.WriteLine("How many ice cubes do you want use?");
             numberOfIceCubes = int.Parse(Console.ReadLine());
 
             Console.WriteLine("What do you want the price per cup to be?");
@@ -72,7 +74,7 @@ namespace LemonadeStand_3DayStarter
 
         public bool CanCreatePitcher(Inventory EnoughSupplies)
         {
-            if (numberOfLemons < EnoughSupplies.lemons.Count && numberOfSugarCubes < EnoughSupplies.sugarCubes.Count && numberOfIceCubes < EnoughSupplies.iceCubes.Count && pitcher.CupsPerPitcher < EnoughSupplies.cups.Count)
+            if (numberOfLemons < EnoughSupplies.lemons.Count && numberOfSugarCubes < EnoughSupplies.sugarCubes.Count && numberOfIceCubes < EnoughSupplies.iceCubes.Count && Pitcher.CupsPerPitcher >= EnoughSupplies.cups.Count)
             {
                 return true;
             }

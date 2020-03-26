@@ -14,7 +14,7 @@ namespace LemonadeStand_3DayStarter
 
         public Weather()
         {
-            setWeather();
+           
            
         }
 
@@ -23,6 +23,7 @@ namespace LemonadeStand_3DayStarter
             Random rand = new Random();
             temp = rand.Next(30, 90);
             currentWeather = weatherConditions[rand.Next(0,2)];
+            
            
         }
 

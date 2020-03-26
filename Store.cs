@@ -32,7 +32,10 @@ namespace LemonadeStand_3DayStarter
             {
                 player.wallet.PayMoneyForItems(transactionAmount);
                 player.inventory.AddLemonsToInventory(lemonsToPurchase);
+                DisplayMoney(player.wallet.Money);
             }
+            else
+                Console.WriteLine("You broke!!!");
         }
 
         public void SellSugarCubes(Player player)
@@ -43,18 +46,24 @@ namespace LemonadeStand_3DayStarter
             {
                 PerformTransaction(player.wallet, transactionAmount);
                 player.inventory.AddSugarCubesToInventory(sugarToPurchase);
+                DisplayMoney(player.wallet.Money);
             }
+            else
+                Console.WriteLine("You broke!!!");
         }
 
         public void SellIceCubes(Player player)
         {
             int iceCubesToPurchase = UserInterface.GetNumberOfItems("ice cubes");
             double transactionAmount = CalculateTransactionAmount(iceCubesToPurchase, pricePerIceCube);
-            if(player.wallet.Money >= transactionAmount)
+            if (player.wallet.Money >= transactionAmount)
             {
                 PerformTransaction(player.wallet, transactionAmount);
                 player.inventory.AddIceCubesToInventory(iceCubesToPurchase);
+                DisplayMoney(player.wallet.Money);
             }
+            else
+                Console.WriteLine("You broke!!!");
         }
 
         public void SellCups(Player player)
@@ -65,9 +74,15 @@ namespace LemonadeStand_3DayStarter
             {
                 PerformTransaction(player.wallet, transactionAmount);
                 player.inventory.AddCupsToInventory(cupsToPurchase);
+                DisplayMoney(player.wallet.Money);
             }
+            else
+                Console.WriteLine("You broke!!!");
         }
-
+        public void DisplayMoney(double myMoney)
+        {
+            Console.WriteLine("Money remaining: $" + myMoney);
+        }
         private double CalculateTransactionAmount(int itemCount, double itemPricePerUnit)
         {
             double transactionAmount = itemCount * itemPricePerUnit;

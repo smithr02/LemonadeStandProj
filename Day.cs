@@ -18,20 +18,25 @@ namespace LemonadeStand_3DayStarter
         {
             weather = new Weather();
             weather.setWeather();
-                     
             
+
+
             //GoToTheStore();
             //SetRecipe();
             //WillCustomerBuy();
 
-            
 
-            
+
+
         }
         public void RunDay(Store store, Player player)
         {
             //Go to Store
             GoToStore(store, player);
+            SetRecipe(player);
+            AddCustomers();
+            SellLemonade(player);
+            
             
             //Setting the recipe
             //(Last) BuyLogic.  Looping over all of our customers and determining whether they buy or not.
@@ -48,17 +53,23 @@ namespace LemonadeStand_3DayStarter
         {
             //Call the player object's 'recipe' to make the recipe.
            recipe = player.SetRecipe();
-           AddCustomers();
+           
             
         }
-        public void SellLemonade()
+        public void SellLemonade(Player player)
         {
             int count = 0;
             foreach (Customer customer in customers)
             {
-                if(customer.WillingToPay)
+                if(customer.WillingToPay  && recipe.pitcher.cupsLeftInPitcher > 0)
                 {
+                    recipe.pitcher.cupsLeftInPitcher--;
+                    player.wallet.Money += Convert.ToDouble(recipe.PricePerCup);
                     count++;
+                }
+                else
+                {
+                    recipe.CreatePitcher(player.inventory);
                 }
                 
             }
