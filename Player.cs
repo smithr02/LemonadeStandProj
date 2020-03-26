@@ -14,7 +14,7 @@ namespace LemonadeStand_3DayStarter
         public Recipe recipe;
 
         // constructor (SPAWNER)
-        public Player()
+        public Player()   //Solid design principle example- this is thing single resoonsibility example, it runs the player class well and efficiently. Generates our variables and sets our recipe.
         {
             inventory = new Inventory();
             wallet = new Wallet();

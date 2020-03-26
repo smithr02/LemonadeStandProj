@@ -79,7 +79,7 @@ namespace LemonadeStand_3DayStarter
 
 
 
-        private void AddCustomers()
+        private void AddCustomers()  //Solid principle example-Open/close principle, here the method adds customer but can be scaleable. Could create new names as well. 
         {
             switch (weather.currentWeather)
             {

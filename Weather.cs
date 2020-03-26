@@ -18,7 +18,7 @@ namespace LemonadeStand_3DayStarter
            
         }
 
-        public void setWeather()
+        public void setWeather()       //SOLID PRINCIPLE EXAMPLE- This is an example of the single responsibility principle. This method does one thing and does it well.
         {
             Random rand = new Random();
             temp = rand.Next(30, 90);

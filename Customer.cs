@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LemonadeStand_3DayStarter
 {
-    class Customer
+    class Customer    //Solid design principle example-method is set in its ways but can be expanded upon. ie adding more methods to further customize the customer. 
     {
         public String Name;
         public int PriceWillingToPay;
